@@ -5,9 +5,9 @@ import requests
 import logging
 from string import Template
 import json
+import sys
 
 endpoint = 'https://try-rpc.mainnet.solana.blockdaemon.tech'
-block_number = 192888028
 EPOCH_SLOTS = 432000
 
 def parseArguments():
@@ -34,7 +34,6 @@ def GetLeaderSchedule(slot_number, identity, endpoint):
     ] }
     """)
     payload = t.substitute(slot=slot_number, identity=identity)
-    #print(payload)
     try:
         response = requests.post(endpoint, json=json.loads(payload)).json()
     except requests.exceptions.RequestException as e:
@@ -46,7 +45,6 @@ def GetLeaderSchedule(slot_number, identity, endpoint):
     if not response.get('result'):
         logging.error('Can\'t get {}'.format(response))
         sys.exit()
-    #print(response)
     return response['result']  
 
 def GetBlock(block_number, endpoint):
@@ -65,8 +63,6 @@ def GetBlock(block_number, endpoint):
     ]}
     """)
     payload = t.substitute(block_number=block_number)
-    #print(payload)
-    #print(type(payload))
     try:
         response = requests.post(endpoint, json=json.loads(payload)).json()
     except requests.exceptions.RequestException as e:
@@ -78,7 +74,6 @@ def GetBlock(block_number, endpoint):
     if not response.get('result'):
         logging.error('Can\'t get {}'.format(response))
         sys.exit()
-    # print(response)
     return response['result']['transactions']
 
 def GetRewardsFromBlock(block):
