@@ -98,7 +98,7 @@ def main():
             print('Slot: {}, Rewards: {} SOL'.format(int(epoch)*EPOCH_SLOTS+slot, rewards_block))
             total_rewards = total_rewards + rewards_block
         print('='*20)
-        print('Total Slots: '.format(len(leader_schedule[args.identity])))
+        print('Total Slots: {}'.format(len(leader_schedule[args.identity])))
         print('Total Rewards: {} SOL'.format(total_rewards))
         print('\n')       
 
