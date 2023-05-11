@@ -1,9 +1,6 @@
 # usage: python3 getIdentityRewardsByEpoch_async.py --epoch 442 443 445 446 --identity <ID>
 import asyncio
 import aiohttp
-from python_graphql_client import GraphqlClient
-from string import Template
-import time
 import argparse
 import requests
 import logging
